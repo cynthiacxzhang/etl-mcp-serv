@@ -1,0 +1,13 @@
+services:
+  mcp-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    image: etl-mcp-serv-dev
+    command: >
+      uv run python -m watchfiles --filter python --ignore-paths __pycache__ "python -m etl_mcp_serv.core.main"
+    volumes:
+      - ./src:/app/src
+      - ./.env:/app/.env:ro
+    tty: true
+    stdin_open: true

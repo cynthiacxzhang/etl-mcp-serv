@@ -1,0 +1,22 @@
+# Dev image: uv + Python, hot-reload, mount your code
+FROM ghcr.io/astral-sh/uv:python3.12-bookworm
+
+WORKDIR /app
+ENV UV_LINK_MODE=copy \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
+
+# Install deps using lockfile for reproducibility
+COPY pyproject.toml uv.lock ./
+RUN uv sync --frozen --no-cache
+
+# Keep an initial copy (lets language servers work even before mount)
+COPY src ./src
+# Optional: example env (don’t copy real .env in dev image)
+COPY .env.example ./.env.example
+
+# Live reload: re-run the server whenever files change under src/
+# (watchfiles is installed as a dev dep)
+CMD ["uv", "run", "python", "-m", "watchfiles", "--filter", "python", \
+    "--ignore-paths", "__pycache__", \
+    "python -m etl_mcp_serv.core.main"]
