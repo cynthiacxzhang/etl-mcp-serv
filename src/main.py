@@ -7,6 +7,7 @@ import os
 import sys
 
 from src.core import app
+from src.configs import configs
 
 
 # ---------- Logging Configuration ----------
