@@ -6,7 +6,7 @@ import logging
 import os
 import sys
 
-from etl_mcp_serv.core import app
+from src.core import app
 
 
 # ---------- Logging Configuration ----------
