@@ -6,7 +6,7 @@ import shutil
 import subprocess
 from typing import Any, Dict, List, Optional
 
-from .tools import tool
+from .registry import tool
 
 
 @tool()

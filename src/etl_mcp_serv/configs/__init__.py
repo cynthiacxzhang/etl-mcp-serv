@@ -11,8 +11,8 @@ from typing import Any
 
 
 class _MCPSettings(SimpleNamespace):
-    def __init__(self, debug: bool = False):
-        super().__init__(debug=debug)
+    def __init__(self, debug: bool = False, auto_start: bool = False):
+        super().__init__(debug=debug, auto_start=auto_start)
 
 
 class Config:
@@ -26,7 +26,7 @@ class Config:
         data = data or {}
         # expected top-level 'mcp' key with optional 'debug'
         mcp = data.get("mcp") or {}
-        self.mcp = _MCPSettings(debug=bool(mcp.get("debug", False)))
+        self.mcp = _MCPSettings(debug=bool(mcp.get("debug", False)), auto_start=bool(mcp.get("auto_start", False)))
         # preserve raw data for diagnostics
         self._data = data
 
