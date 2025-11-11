@@ -17,6 +17,7 @@ COPY .env.example ./.env.example
 
 # Live reload: re-run the server whenever files change under src/
 # (watchfiles is installed as a dev dep)
+ENV PYTHONPATH="/app/src:$PYTHONPATH"
 CMD ["uv", "run", "python", "-m", "watchfiles", "--filter", "python", \
     "--ignore-paths", "__pycache__", \
     "python -m etl_mcp_serv.core.main"]

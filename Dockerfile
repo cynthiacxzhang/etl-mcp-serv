@@ -24,6 +24,7 @@ COPY --from=build /app/src ./src
 
 # Add venv to PATH
 ENV PATH="/app/.venv/bin:$PATH"
+ENV PYTHONPATH="/app/src:$PYTHONPATH"
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1
 
