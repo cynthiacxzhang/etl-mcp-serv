@@ -6,7 +6,8 @@ readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
     "httpx>=0.28.1",
-    "mcp[cli]>=1.21.0",
+    "mcp[cli]>=1.11.0",
+    "north-mcp-python-sdk @ git+ssh://git@github.com/cohere-ai/north-mcp-python-sdk.git",
 ]
 
 [dependency-groups]
